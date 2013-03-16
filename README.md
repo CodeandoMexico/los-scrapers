@@ -8,6 +8,7 @@ Los scrapers!
  al final?)
  * Crear un worker que esté revisando por nueva información y la vaya guardando
  * Crear un visualizador para esta información
+ * Parsear y transformar las fechas
 
 Recopilación de web scrapers para molestar al gobierno (a collection of
 web-scrapers to extract government data)
