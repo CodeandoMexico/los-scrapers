@@ -35,14 +35,38 @@ while content_available do
   content_available = doc.css('div#info').size > 0
 
   doc.css('div#info').each do |div|
-    monto = div.content.match(/monto de \$\s*(\d+([.,]\d+)*)/)[1]
+    # Extracción
+    monto = div.content.match(/monto de \$( *)([0-9,.]*) ([A-Z]*) el/)
+    id    = div.content.match(/con clave (.*) con el objeto/)
+    proveedor   = div.content.match(/proveedor (.*) un /)
+    fecha = div.content.match(/realizó el (.*) con el proveedor/)
+    fecha = div.content.match(/cual iniciará (.*) y concluirá/) if fecha.nil?
+
     razon = div.css('a').first.content
-    fecha = div.content.match(/realizó el (.*) con el proveedor/)[1]
-    id    = div.content.match(/con clave (.*) con el objeto/)[1]
     dependencia = div.css('.tit-info').last.content
-    proveedor   = div.content.match(/proveedor (.*) un /)[1]
+
+    # Validación y asignación
+    unless monto && monto.size == 4
+      raise "Error fetching monto from #{div.content} "
+    end
+    raise "Error fetching razon from #{div.content} " unless razon
+    raise "Error fetching id from #{div.content} " unless id
+    raise "Error fetching dependencia from #{div.content} " unless dependencia
+    raise "Error fetching proveedor from #{div.content} " unless proveedor
+    raise "Error fetching fecha from #{div.content} " unless fecha
+
+    moneda = monto[3]
+    monto  = monto[2]
+    id     = id[1]
+    fecha  = fecha[1]
+    proveedor = proveedor[1]
+
+    # Transformacion
     fecha.gsub!(' ', '')
-    datos = { id:id, fecha: fecha, razon: razon, monto: monto,
+    monto.gsub!(' ', '')
+    monto.gsub!(',', '')
+
+    datos = { id:id, fecha: fecha, razon: razon, monto: monto, moneda: moneda,
               dependencia: dependencia, proveedor: proveedor}
     puts datos
     contratos << datos
