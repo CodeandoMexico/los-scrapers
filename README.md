@@ -10,7 +10,7 @@ Los scrapers!
  * Crear un visualizador para esta información
  * Parsear y transformar las fechas
 
-Recopilación de web scrapers para molestar al gobierno (a collection of
+Recopilación de web scrapers para mejorar al gobierno (a collection of
 web-scrapers to extract government data)
 
 ![chuck](https://si0.twimg.com/profile_images/1697024721/Chuck_Norris.jpg)
