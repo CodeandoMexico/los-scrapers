@@ -1,5 +1,4 @@
 psycopg2==2.4.6
 pymongo==2.5
-wsgiref==0.1.2
 requests
 d2to1
