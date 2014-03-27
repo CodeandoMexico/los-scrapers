@@ -1,1 +1,7 @@
 datos
+*.pyc
+venv
+*.egg
+*.egg-info
+build
+dist
