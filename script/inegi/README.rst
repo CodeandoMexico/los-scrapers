@@ -2,11 +2,11 @@ INEGI Parser
 ============
 
 Script de Python que toma los archivos TSV de INEGI para todas las
-Entidades Federativas de México, los parsea y los transmite hacia una
+Entidades Federativas de México, los analiza y los transmite hacia una
 base de datos MongoDB (noSQL) o PostgreSQL (SQL). Los archivos son
 tomados de la sección de `Descarga
 Masiva <http://www3.inegi.org.mx/sistemas/descarga/default.aspx?c=28088>`__
-de la INEGI por un shell script que los descarga y descomprime
+de la INEGI por un script en Python que los descarga y descomprime
 automáticamente.
 
 Dependencias
@@ -17,31 +17,65 @@ Dependencias
 -  `pymongo 2.5 <http://api.mongodb.org/python/current/>`__
 -  `PostgreSQL <http://www.postgresql.org/>`__ 9.1.5
 -  `psycopg2 <http://initd.org/psycopg/>`__ 2.4.6
+- `Requests <http://.python-requests.org/>`, para la obtención de archivos.
 
-Para instalar las dependencias usando pip, puedes correr:
+Para instalar las dependencias usando `pip`, puedes correr:
 
 ::
 
-    pip install -r requirements.txt
+    $ pip install -r requirements.txt
+
 
 Ejemplo de uso
 --------------
 
-Para correr el proceso completo, primero hay que ejecutar nacional.sh o
-estatal.sh, estos scripts bajan y descomprimen los archivos de todos los
-estados o el agregado nacional del INEGI.
+Para correr el proceso completo, primero debe bajar indicar por medio del
+fichero de configuración los ficheros asociados a las entidades que necesita,
+para ello puede descomentar (quitar el signo `;` al inicio de la línea) las
+líneas correspondientes en la sección `[entities]`. Por omisión están
+habilitadas las entidades federativas *Aguas Calientes* y *Baja California*,
+los ficheros serán descargados desde el INEGI y descomprimidos, para ello
+seguidamente instale la aplicación.
+
+
+Instalación
+-----------
+
+Es posible instalar la aplicación al hacer:
 
 ::
 
-    ./estatal.sh
-    ./nacional.sh
+    $ python setup.py install
+
+En algunos casos puede necesitar permisos de administrador, por ejemplo:
+
+::
+
+    $ sudo python setup.py install
+
+Descarga de ficheros
+--------------------
+
+Una vez instalada la aplicación podrá ejecutar el comando:
+
+::
+
+    $ inegi_get_data
+
+El *script* le permitirá descargar y descomprimir los ficheros del INEGI,
+puede descubrir otras opciones que le brinda el *script* al utilizar el
+parámetro `-h` o `--help`
+
+::
+
+    $ inegi_get_data --help
 
 Después se corre el parser (para SQL o noSQL) individualmente:
 
 ::
 
-    ./inegi_nosql.py --dbwrite datos/*
-    ./inegi_sql.py -dinegi -urafaelcr -hlocalhost datos/*
+    $ inegi_nosql --dbwrite datos/*
+    $ inegi_sql -dinegi -urafaelcr -hlocalhost datos/*
 
 Con estas opciones, el script procesa todas las subcarpetas con la
 notación de nombre XX\_EEEEEE\_tsv, en donde XX es la clave del estado
