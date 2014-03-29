@@ -12,7 +12,7 @@ except ImportError:
 
 import requests
 
-def get_data():
+def main():
     # Options for command line
     parser = argparse.ArgumentParser()
     parser.add_argument('--skip-download', help='Skip download files from source.',
@@ -73,3 +73,6 @@ def get_data():
                         zf.extractall(entity)
     else:
         print('Download skipped.')
+
+if __name__ == '__main__':
+    main()
