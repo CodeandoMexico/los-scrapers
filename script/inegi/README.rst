@@ -29,13 +29,14 @@ Para instalar las dependencias usando `pip`, puedes correr:
 Ejemplo de uso
 --------------
 
-Para correr el proceso completo, primero debe bajar indicar por medio del
+Para correr el proceso completo, primero debe indicar por medio del
 fichero de configuración los ficheros asociados a las entidades que necesita,
 para ello puede descomentar (quitar el signo `;` al inicio de la línea) las
-líneas correspondientes en la sección `[entities]`. Por omisión están
-habilitadas las entidades federativas *Aguas Calientes* y *Baja California*,
-los ficheros serán descargados desde el INEGI y descomprimidos, para ello
-seguidamente instale la aplicación.
+líneas correspondientes en la sección `[entities]`.
+
+Por omisión están habilitadas las entidades federativas *Aguas Calientes* y
+*Baja California*, los ficheros serán descargados desde el INEGI y
+descomprimidos, para ello seguidamente instale la aplicación.
 
 
 Instalación
@@ -60,11 +61,12 @@ Una vez instalada la aplicación podrá ejecutar el comando:
 
 ::
 
-    $ inegi_get_data
+    $ inegi_get_data <directory>
 
-El *script* le permitirá descargar y descomprimir los ficheros del INEGI,
-puede descubrir otras opciones que le brinda el *script* al utilizar el
-parámetro `-h` o `--help`
+El *script* le permitirá descargar y descomprimir los ficheros del INEGI, lo
+descargado por el script se almacenará en el directorio especificado. Puede
+descubrir otras opciones que le brinda el *script* al utilizar el parámetro `-h`
+o `--help`
 
 ::
 
@@ -104,8 +106,8 @@ con el seguro popular en el 2006 (R: Guanajuato):
 ::
 
     db.entidades.find({
-      "Id_Indicador": "1004000045", 
-      "2006.valor":{$ne:null}, 
+      "Id_Indicador": "1004000045",
+      "2006.valor":{$ne:null},
       "Cve_Municipio":"000"
       }).sort({"2006.valor": -1}).limit(1).pretty()
 
@@ -152,7 +154,7 @@ indicador
 
 ::
 
-         id     |              descripcion                  |  notas   
+         id     |              descripcion                  |  notas
     ------------+-------------------------------------------+----------
      1009000001 | Superficie sembrada total                 |
      1009000002 | Superficie sembrada de alfalfa verde      |
@@ -169,7 +171,7 @@ entidad
 
 ::
 
-     id |     nombre     
+     id |     nombre
     ----+----------------
      06 | Colima
      01 | Aguascalientes
@@ -179,7 +181,7 @@ municipio
 
 ::
 
-     entidad | id  |      nombre      
+     entidad | id  |      nombre
     ---------+-----+------------------
      06      | 000 | Total estatal
      06      | 008 | Minatitlán
@@ -197,7 +199,7 @@ categoria
 
 ::
 
-     id |                    nombre                   | parent 
+     id |                    nombre                   | parent
     ----+---------------------------------------------+--------
       1 | Economía                                    |      0
       2 | Actividades primarias                       |      1
@@ -218,7 +220,7 @@ valor
 
 ::
 
-     indicador  | municipio | entidad | anio |     valor      | unidades  | fuente               
+     indicador  | municipio | entidad | anio |     valor      | unidades  | fuente
     ------------+-----------+---------+------+----------------+-----------+----------------------
      1005000078 | 006       | 06      | 2001 |       91.10000 |           | Instituto de Educa...
      1009000001 | 000       | 06      | 1998 |   167886.00000 | Hectáreas | Secretaría de Agri...

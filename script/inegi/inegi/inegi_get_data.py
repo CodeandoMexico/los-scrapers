@@ -6,9 +6,9 @@ import sys
 import zipfile
 
 try:
-    from ConfigParser import ConfigParser
+    from ConfigParser import ConfigParser, NoSectionError, NoOptionError
 except ImportError:
-    from configparser import ConfigParser
+    from configparser import ConfigParser, NoSectionError, NoOptionError
 
 import requests
 
@@ -19,32 +19,55 @@ def main():
                         action='store_true')
     parser.add_argument('-i', action='store_true',
                         help='Request confirmation before attempting to remove each file')
+    parser.add_argument('-c', '--config',
+                        help='Specify which config file to read.')
+    parser.add_argument('directory',
+                        help='Create necessary local directory hierarchy.')
     args = parser.parse_args()
 
     # Try to read the source configuration
     config = ConfigParser()
     try:
-        config.readfp(open('inegi.cfg'))
+        if args.config:
+            inegi_fp = args.config
+        else:
+            inegi_cfg = os.path.abspath(os.path.dirname(__file__))
+            inegi_fp = os.path.join(inegi_cfg, 'inegi.cfg')
+        config.readfp(open(inegi_fp))
     except IOError:
-        print('Improperly configured, please add inegi.cfg file.')
+        print('Improperly configured.')
         sys.exit()
 
     chunk_size = 1024
 
-    base_path = config.get('general', 'base_path')
+    try:
+        base_path = config.get('general', 'base_path')
+    except NoSectionError, NoOptionError:
+        print('Improperly configured.')
+        sys.exit()
 
     # dir_path represents the directory where we store the downloaded files
-    dir_path = os.path.join(os.path.dirname(__file__), 'datos')
+    dir_path = args.directory
 
     if not os.path.isdir(dir_path):
-        os.mkdir(dir_path, 0755)
+        try:
+            os.makedirs(dir_path, 0755)
+        except OSError:
+            print('Directory cannot be created.')
+            sys.exit()
 
     os.chdir(dir_path)
 
     # Download all files listed on [entities] section
     if not args.skip_download:
         print('Downloading info from source...')
-        entities = config.items('entities')
+
+        try:
+            entities = config.items('entities')
+        except NoSectionError:
+            print('Improperly configured.')
+            sys.exit()
+
         for entity, url in entities:
             target_url = "".join([base_path, url])
             target_file = "".join([entity, '.zip'])
