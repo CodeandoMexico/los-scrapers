@@ -1,5 +1,13 @@
-Los scrapers!
+Los Scrapers
 ============
+
+Este repositorio es una coleccion de scrapers.
+
+¿Qué es un scraper?
+¿Como agrego un scraper a esta lista?
+
+Sitios con informacion que se necesita desarrollar scrapers.
+Tutorial de scraping?
 
 ## TODO
 
