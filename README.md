@@ -42,4 +42,5 @@ Posiblemente, pregunta en la seccion de [issues] (https://github.com/CodeandoMex
 Recopilación de web scrapers para mejorar al gobierno (a collection of
 web-scrapers to extract government data)
 
-![chuck](https://si0.twimg.com/profile_images/1697024721/Chuck_Norris.jpg)
+
+![alt text](http://blog.codeandomexico.org/images/logo.png "Codeando México")
