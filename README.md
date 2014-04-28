@@ -8,7 +8,7 @@ Este repositorio es una colección de _scrapers_ relacionados con información p
 
 ### ¿Qué es un _scraper_?
 
-Un _scraper_ es un programa que usualmente carga páginas web o documentos y los transforma en otro tipo de documento. La finalidad es obtener los mismos datos en formatos más amigables para desarrolladores.
+Un _scraper_ es un programa que extrae datos de sitios web o documentos y los transforma en otro tipo de documento, con la finalidad de obtenerlos en formatos más amigables/accesibles para desarrolladores.
 
 ### ¿Cómo agrego un _scraper_ a esta lista?
 
