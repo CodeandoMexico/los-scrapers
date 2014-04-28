@@ -16,7 +16,7 @@ Para agregar un _scraper_ a esta lista solo manda un pull request en este repo.
 
 ### ¿Pueden ayudarme/hacer un _scraper_?
 
-Posiblemente, pregunta en la seccion de [issues] (https://github.com/CodeandoMexico/repo-guidelines/issues).
+Posiblemente, pregunta en la seccion de [issues] (https://github.com/CodeandoMexico/los-scrapers/issues).
 
 
 ============
