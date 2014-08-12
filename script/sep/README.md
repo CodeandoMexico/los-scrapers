@@ -6,4 +6,4 @@ Script de python que visita virtualmente todas las combinaciones de la forma loc
 
 #Nota
 
-Este Script tiene como producto un csv con nombres de columnas distintos a los que se encuentran en la pagina. El Dataset en Datos.gob.mx fue manipulado manualmente para incluír comillas para las columnas con strings, y los headers fueron modificados para no tener acentos y otros caracteres especiales.
+Este Script tiene como producto un csv con nombres de columnas distintos a los que se encuentran en la pagina. El Dataset en Datamx.io fue manipulado manualmente para incluír comillas para las columnas con strings, y los headers fueron modificados para no tener acentos y otros caracteres especiales.
